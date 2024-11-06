@@ -1,4 +1,5 @@
 from cell import Cell
+from note import Note
 import time
 import random
 
@@ -56,7 +57,7 @@ class Maze:
         if self._win is None:
             return
         self._win.redraw()
-        time.sleep(0.05)
+        time.sleep(0.25)
 
     def _break_entrance_and_exit(self):
         entrance_cell = self._cells[0][0]
@@ -121,6 +122,10 @@ class Maze:
         # left
         if i > 0 and self._cells[i][j].has_left_wall == False and self._cells[i - 1][j].visited == False:
             self._cells[i][j].draw_move(self._cells[i - 1][j])
+            note = Note()
+            pitch = (i * 30) % 127
+            duration = 0.125
+            note.play(pitch, duration, j)
             test_left = self._solve_r(i - 1, j)
             if test_left:
                 return True
@@ -128,6 +133,10 @@ class Maze:
         # right
         if i < self._num_cols - 1 and self._cells[i][j].has_right_wall == False and self._cells[i + 1][j].visited == False:
             self._cells[i][j].draw_move(self._cells[i + 1][j])
+            note = Note()
+            pitch = (i * 40) % 127
+            duration = 0.125
+            note.play(pitch, duration, j)
             test_right = self._solve_r(i + 1, j)
             if test_right:
                 return True
@@ -135,6 +144,10 @@ class Maze:
         # up
         if j > 0 and self._cells[i][j].has_top_wall == False and self._cells[i][j - 1].visited == False:
             self._cells[i][j].draw_move(self._cells[i][j - 1])
+            note = Note()
+            pitch = (i * 50) % 127
+            duration = 0.125
+            note.play(pitch, duration, j)
             test_up = self._solve_r(i, j - 1)
             if test_up:
                 return True
@@ -142,6 +155,10 @@ class Maze:
         # down
         if j < self._num_rows - 1 and self._cells[i][j].has_bottom_wall == False and self._cells[i][j + 1].visited == False:
             self._cells[i][j].draw_move(self._cells[i][j + 1])
+            note = Note()
+            pitch = (i * 20) % 127
+            duration = 0.125
+            note.play(pitch, duration, j)
             test_down = self._solve_r(i, j + 1)
             if test_down:
                 return True

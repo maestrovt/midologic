@@ -6,8 +6,8 @@ import mido
 
 def main():
 
-    num_rows = 5
-    num_cols = 5
+    num_rows = 7
+    num_cols = 7
     margin = 50
     screen_x = 800
     screen_y = 600
@@ -18,7 +18,7 @@ def main():
     sys.setrecursionlimit(10000)
     win = Window(screen_x, screen_y)
 
-    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win, seed)
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win)
     print("maze created")
     is_solveable = maze.solve()
     if not is_solveable:

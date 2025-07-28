@@ -5,7 +5,7 @@ class Cell:
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
-        self.visited = False
+        self.visited = False # track which cells have had their walls broken
 
         self._x1 = None
         self._x2 = None
